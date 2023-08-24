@@ -1,0 +1,81 @@
+---
+layout: base
+title: Blog
+pagination:
+    enabled: true
+collection: posts
+---
+
+<div class="container">
+    <h2 class="text-center">Blog</h2>
+    <div class="row">
+                {% for post in paginator.posts %}
+                <div class="col-sm-4">
+                    <div class="card mt-4">
+                <a class="post-link card-link card post-card layout-{{ post.layout }}"
+                    href="{{ post.url | relative_url }}">
+                    {% if post.title%}
+                    <div class="card-header">
+                        {{ post.title | escape }}
+                    </div>
+                    {% endif %}
+                    {% case post.layout %}
+                    {% when "post" %}
+                    <div class="card-body">
+                        {% if post.title %}
+                        <h2 class="card-title post-title">{{ post.title | escape }}</h2>
+                        {% endif %}
+                        {% if post.excerpt %}
+                        <p>{{ post.excerpt | default: site.description | strip_html | normalize_whitespace | truncate:
+                            160 | escape }}</p>
+                            {% endif %}
+                    </div>
+                    {% when "image" %}
+                    <img class="img-fluid" src="{{post.thumbnail }}">
+                    {% when "quote" %}
+                    <div class="card-body lead">
+                        {{post.content}}
+                    </div>
+                    {% endcase %}
+                    <div class="card-footer">
+                        <small><span class="date">{{ post.date | date: date_format }}</span></small>
+                    </div>
+                </a>
+                </div>
+    </div>
+                {% endfor %}
+    </div>
+    <nav class="d-flex justify-content-center mt-4">
+        {% if paginator.total_pages > 1 %}
+<div class="pagination mb-5">
+  {% if paginator.previous_page %}
+  <li class="page-item"><a class="page-link"
+    href="{{ paginator.previous_page_path | relative_url }}">Previous</a></li>
+  {% endif %}
+            {% for page in (1..paginator.total_pages) %}
+            <!-- {% if page == paginator.page %}
+            <li class="page-item"><a class="page-link" href="/blog/">{{ page }}</a></li>
+            {% elsif page == 1 %}
+            <li class="page-item"><a class="page-link" href="/blog/">{{ page }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link"
+                    href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
+            {% endif %} -->
+            {% if page == paginator.page %}
+            <li class="page-item"><a class="page-link" href="#">{{ page }}</a></li>
+            {% elsif page == 1 %}
+          <li class="page-item"><a class="page-link" href="/blog/">{{ page }}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link"
+            href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
+          {% endif %}
+            {% endfor %}
+            {% if paginator.next_page %}
+            <li class="page-item"><a class="page-link" href="{{ paginator.next_page_path | relative_url }}">Next</a>
+            </li>
+          {% endif %}
+        </ul>
+</nav>
+</div>
+{% endif %}
+</div>

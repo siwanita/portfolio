@@ -1,0 +1,39 @@
+---
+layout: base
+---
+
+<div class="home container">
+  
+  {{ content }}
+
+  <div class="card-deck">
+  {% for item in site.items %}
+
+    <a class="post-link card-link card post-card layout-{{ item.layout }}" href="{{ item.url | relative_url }}">
+      {% if item.title and item.layout == "image" %}
+        <div class="card-header">
+          {{ item.title | escape }}
+        </div>
+      {% endif %}
+      {% case item.layout %}
+        {% when "post" %}
+          <div class="card-body">
+            {% if item.title %}
+              <h2 class="card-title post-title">{{ item.title | escape }}</h2>
+            {% endif %}
+            <p>{{ item.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
+          </div>
+        {% when "image" %}
+            <img class="img-fluid" src="{{item.thumbnail }}">
+        {% when "quote" %}
+          <div class="card-body lead">
+            {{item.content}}
+          </div>
+      {% endcase %}
+      <div class="card-footer">
+        <small><span class="date">{{ item.date | date: date_format }}</span></small>
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+</div>

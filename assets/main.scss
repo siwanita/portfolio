@@ -1,0 +1,35 @@
+---
+---
+
+@import "animations";
+@import "variables";
+@import "bootstrap/bootstrap";
+@import "bootstrap_customization";
+
+.content-wrapper {
+	margin-bottom: 70px; /* height of footer */
+}
+
+//additional resets
+@for $i from 1 through 6 {
+  h#{$i} a {
+    color:inherit;
+  }
+}
+
+//just apply .img-fluid to all images.
+img {
+	@extend .img-fluid;
+	max-width: 100%;
+}
+
+.post-content img {
+	@extend .img-thumbnail;
+}
+
+.post-meta {
+	@extend .alert;
+	@extend .alert-light;
+	background-color:$gray-100;
+	border-color:$gray-200;
+}

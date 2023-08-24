@@ -1,0 +1,22 @@
+{
+  "data": {
+    "posts": [
+      {% for post in site.posts %}
+      {
+        "title": "{{ post.title | escape }}",
+        "excerpt": "{{ post.excerpt | strip_html | strip_newlines | escape }}",
+        "publishDate": "{{ post.date }}",
+        "url": "{{ site.url }}{{ post.url }}",
+        "tags": "{{ post.tags | join: ' ' }}"
+      }{% if post != site.posts.last %},{% endif %}
+      {% endfor %}
+    ],
+    "projects": [
+      {% for project in site.projects %}
+      {
+        "title": "{{ project.title | escape }}"
+      }{% if project != site.projects.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}

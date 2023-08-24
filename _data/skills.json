@@ -1,0 +1,8 @@
+{ "skills": [
+    { "skill": "Skill 1", "percent": 50, "colorSlice":"#007bff",  "colorCircle": "#f1f1f1", "fontWeight": 100},
+    { "skill": "Skill 1", "percent": 50, "colorSlice":"#007bff",  "colorCircle": "#f1f1f1", "fontWeight": 100},
+    { "skill": "Skill 1", "percent": 50, "colorSlice":"#007bff",  "colorCircle": "#f1f1f1", "fontWeight": 100},
+    { "skill": "Skill 1", "percent": 50, "colorSlice":"#007bff",  "colorCircle": "#f1f1f1", "fontWeight": 100},
+    { "skill": "Skill 1", "percent": 50, "colorSlice":"#007bff",  "colorCircle": "#f1f1f1", "fontWeight": 100},
+    { "skill": "Skill 1", "percent": 50, "colorSlice":"#007bff",  "colorCircle": "#f1f1f1", "fontWeight": 100}
+] }
